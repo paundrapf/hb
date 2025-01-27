@@ -3,184 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Birthday Greeting</title>
+  <title>Aesthetic Birthday Greeting</title>
   <style>
-    body {
+    /* General Styling */
+    body, html {
       margin: 0;
+      padding: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #6A0572, #A4508B, #F4ACB7);
-      background-size: 300% 300%;
-      animation: gradientShift 10s ease infinite;
-      overflow-x: hidden;
-      overflow-y: scroll;
+      background-color: #f7f1e3;
+      overflow: hidden;
     }
 
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+      background: linear-gradient(135deg, #e8f6f3, #f9e8f5);
     }
 
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      padding: 20px;
-      margin: 50px auto;
+    .page {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
       text-align: center;
-      color: white;
-      max-width: 500px;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.8s ease;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      transition: opacity 1s ease, transform 1s ease;
     }
 
-    .card.visible {
+    .page.active {
+      display: flex;
       opacity: 1;
       transform: translateY(0);
     }
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 10px;
+    .page.hidden {
+      opacity: 0;
+      transform: translateY(20px);
     }
 
-    p {
+    .page h1 {
+      font-size: 3rem;
+      color: #333;
+      margin: 0;
+    }
+
+    .page p {
+      font-size: 1.5rem;
+      color: #555;
+    }
+
+    button {
+      padding: 10px 20px;
       font-size: 1rem;
-      margin: 10px 0;
-    }
-
-    .btn {
+      border: none;
+      border-radius: 8px;
+      background-color: #6a89cc;
+      color: white;
+      cursor: pointer;
       margin-top: 20px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 30px;
-      background: #A4508B;
-      color: white;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s ease;
+      transition: all 0.3s ease;
     }
 
-    .btn:hover {
-      background: #6A0572;
+    button:hover {
+      background-color: #82ccdd;
     }
 
-    .detail-page {
-      display: none;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: rgba(255, 255, 255, 0.95);
-      animation: zoomInOut 0.8s ease;
+    /* Responsive Styling */
+    @media (max-width: 768px) {
+      .page h1 {
+        font-size: 2.5rem;
+      }
+      .page p {
+        font-size: 1.2rem;
+      }
+      button {
+        font-size: 0.9rem;
+      }
     }
 
-    .detail-box {
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      padding: 20px;
-      width: 80%;
-      max-width: 600px;
-      text-align: center;
-    }
-
-    .detail-box textarea {
-      width: 100%;
-      height: 150px;
-      border-radius: 10px;
-      border: 1px solid #ddd;
-      padding: 10px;
-      font-size: 1rem;
-      margin-bottom: 20px;
-    }
-
-    .detail-box img {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-
-    .detail-box .submit-btn {
-      margin-top: 10px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 30px;
-      background: #A4508B;
-      color: white;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s ease;
-    }
-
-    .detail-box .submit-btn:hover {
-      background: #6A0572;
-    }
-
-    .back-btn {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 30px;
-      background: #6A0572;
-      color: white;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s ease;
-    }
-
-    .back-btn:hover {
-      background: #A4508B;
-    }
-
-    @keyframes zoomInOut {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
   </style>
 </head>
 <body>
-
-  <div id="main-content">
-    <div class="card">
+  <div class="container">
+    <div id="page-1" class="page active">
       <h1>Happy Birthday!</h1>
-      <p>Today is a special day, and it's all about celebrating you. We hope this year brings you countless blessings and unforgettable memories.</p>
-      <button class="btn" onclick="goToPage('Wishing you success and happiness in all aspects of life. Stay amazing!')">Read More</button>
+      <p>Your journey begins here...</p>
+      <button onclick="nextPage(2)">Next</button>
     </div>
-  </div>
 
-  <div id="detail-page" class="detail-page">
-    <div class="detail-box">
-      <h1>Detail Message</h1>
-      <textarea id="detail-message"></textarea>
-      <img src="https://via.placeholder.com/300" alt="Placeholder Image">
-      <button class="submit-btn" onclick="submitMessage()">Submit</button>
-      <button class="back-btn" onclick="goBack()">Back</button>
+    <!-- Additional Pages -->
+    <div id="page-2" class="page hidden">
+      <h1>A Special Day</h1>
+      <p>Celebrate the amazing person you are.</p>
+      <button onclick="nextPage(3)">Next</button>
+    </div>
+
+    <div id="page-3" class="page hidden">
+      <h1>So Many Memories</h1>
+      <p>Each one brighter than the last.</p>
+      <button onclick="nextPage(4)">Next</button>
+    </div>
+
+    <!-- Add up to 10 pages -->
+
+    <div id="page-10" class="page hidden">
+      <h1>Cheers to You!</h1>
+      <p>Here's to another fantastic year ahead!</p>
+      <button onclick="restart()">Restart</button>
     </div>
   </div>
 
   <script>
-    function goToPage(message) {
-      document.getElementById('main-content').style.display = 'none';
-      const detailPage = document.getElementById('detail-page');
-      document.getElementById('detail-message').value = message;
-      detailPage.style.display = 'flex';
+    let currentPage = 1;
+
+    function nextPage(page) {
+      document.getElementById(`page-${currentPage}`).classList.remove('active');
+      document.getElementById(`page-${currentPage}`).classList.add('hidden');
+
+      const next = document.getElementById(`page-${page}`);
+      next.classList.add('active');
+      next.classList.remove('hidden');
+
+      currentPage = page;
     }
 
-    function goBack() {
-      document.getElementById('main-content').style.display = 'block';
-      document.getElementById('detail-page').style.display = 'none';
-    }
-
-    function submitMessage() {
-      const message = document.getElementById('detail-message').value;
-      alert(`Message Submitted: ${message}`);
-      // Simulate sending to admin (this would normally involve an API call)
-      console.log(`Message sent to admin: ${message}`);
-      goBack();
+    function restart() {
+      nextPage(1);
     }
   </script>
-
 </body>
 </html>
