@@ -31,9 +31,14 @@
       text-align: center;
       color: white;
       max-width: 500px;
-      transform: translateY(0);
-      opacity: 1;
+      opacity: 0;
+      transform: translateY(50px);
       transition: all 0.8s ease;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     h1 {
@@ -194,6 +199,19 @@
   </div>
 
   <script>
+    const cards = document.querySelectorAll('.card');
+
+    // Scroll animation
+    window.addEventListener('scroll', () => {
+      cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (cardTop < windowHeight - 50) {
+          card.classList.add('visible');
+        }
+      });
+    });
+
     function goToPage(message) {
       document.getElementById('main-content').style.display = 'none';
       const detailPage = document.getElementById('detail-page');
