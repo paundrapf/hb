@@ -30,12 +30,15 @@
       align-items: center;
       flex-direction: column;
       text-align: center;
-      width: 100%;
-      height: 100%;
+      width: 80%;
+      height: 80%;
       position: absolute;
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
       opacity: 0;
       transform: scale(0.9);
-      transition: opacity 1s ease, transform 1s ease;
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
     .page.active {
@@ -52,50 +55,39 @@
     .page h1 {
       font-size: 3rem;
       color: #333;
-      margin: 0;
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 2px solid #333;
-      width: 0;
-      animation: typing 2s steps(30, end), blink 0.5s step-end infinite;
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blink {
-      from { border-color: transparent; }
-      to { border-color: #333; }
+      margin-bottom: 1rem;
     }
 
     .page p {
       font-size: 1.5rem;
       color: #555;
-      opacity: 0;
-      animation: fadeIn 1.5s ease forwards 2s;
+      margin-bottom: 2rem;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    button {
-      padding: 10px 20px;
+    .page button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
       font-size: 1rem;
       border: none;
-      border-radius: 8px;
       background-color: #6a89cc;
       color: white;
       cursor: pointer;
-      margin-top: 20px;
+      border-radius: 8px;
+      padding: 10px 20px;
       transition: all 0.3s ease;
     }
 
-    button:hover {
+    .page button:hover {
       background-color: #82ccdd;
+    }
+
+    .page .next {
+      right: 10px;
+    }
+
+    .page .prev {
+      left: 10px;
     }
 
     /* Responsive Styling */
@@ -106,7 +98,7 @@
       .page p {
         font-size: 1.2rem;
       }
-      button {
+      .page button {
         font-size: 0.9rem;
       }
     }
@@ -118,71 +110,70 @@
     <div id="page-1" class="page active">
       <h1>Happy Birthday!</h1>
       <p>Your journey begins here...</p>
-      <button onclick="nextPage(2)">Next</button>
+      <button class="next" onclick="nextPage(2)">Next</button>
     </div>
 
     <!-- Additional Pages -->
     <div id="page-2" class="page hidden">
       <h1>A Special Day</h1>
       <p>Celebrate the amazing person you are.</p>
-      <button onclick="nextPage(3)">Next</button>
-      <button onclick="prevPage(1)">Back</button>
+      <button class="next" onclick="nextPage(3)">Next</button>
+      <button class="prev" onclick="prevPage(1)">Back</button>
     </div>
 
     <div id="page-3" class="page hidden">
       <h1>So Many Memories</h1>
       <p>Each one brighter than the last.</p>
-      <button onclick="nextPage(4)">Next</button>
-      <button onclick="prevPage(2)">Back</button>
+      <button class="next" onclick="nextPage(4)">Next</button>
+      <button class="prev" onclick="prevPage(2)">Back</button>
     </div>
 
     <div id="page-4" class="page hidden">
       <h1>Grateful Moments</h1>
       <p>Filled with laughter and love.</p>
-      <button onclick="nextPage(5)">Next</button>
-      <button onclick="prevPage(3)">Back</button>
+      <button class="next" onclick="nextPage(5)">Next</button>
+      <button class="prev" onclick="prevPage(3)">Back</button>
     </div>
 
     <div id="page-5" class="page hidden">
       <h1>Dream Big</h1>
       <p>The best is yet to come.</p>
-      <button onclick="nextPage(6)">Next</button>
-      <button onclick="prevPage(4)">Back</button>
+      <button class="next" onclick="nextPage(6)">Next</button>
+      <button class="prev" onclick="prevPage(4)">Back</button>
     </div>
 
     <div id="page-6" class="page hidden">
       <h1>Cheers to Friendship</h1>
       <p>We are so lucky to have you.</p>
-      <button onclick="nextPage(7)">Next</button>
-      <button onclick="prevPage(5)">Back</button>
+      <button class="next" onclick="nextPage(7)">Next</button>
+      <button class="prev" onclick="prevPage(5)">Back</button>
     </div>
 
     <div id="page-7" class="page hidden">
       <h1>Happiness Overflow</h1>
       <p>May your heart always be full.</p>
-      <button onclick="nextPage(8)">Next</button>
-      <button onclick="prevPage(6)">Back</button>
+      <button class="next" onclick="nextPage(8)">Next</button>
+      <button class="prev" onclick="prevPage(6)">Back</button>
     </div>
 
     <div id="page-8" class="page hidden">
       <h1>Shine Bright</h1>
       <p>You light up every room you enter.</p>
-      <button onclick="nextPage(9)">Next</button>
-      <button onclick="prevPage(7)">Back</button>
+      <button class="next" onclick="nextPage(9)">Next</button>
+      <button class="prev" onclick="prevPage(7)">Back</button>
     </div>
 
     <div id="page-9" class="page hidden">
       <h1>Stay Amazing</h1>
       <p>Never stop being you.</p>
-      <button onclick="nextPage(10)">Next</button>
-      <button onclick="prevPage(8)">Back</button>
+      <button class="next" onclick="nextPage(10)">Next</button>
+      <button class="prev" onclick="prevPage(8)">Back</button>
     </div>
 
     <div id="page-10" class="page hidden">
       <h1>Cheers to You!</h1>
       <p>Here's to another fantastic year ahead!</p>
-      <button onclick="restart()">Restart</button>
-      <button onclick="prevPage(9)">Back</button>
+      <button class="prev" onclick="prevPage(9)">Back</button>
     </div>
   </div>
 
