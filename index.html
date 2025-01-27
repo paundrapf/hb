@@ -31,14 +31,9 @@
       text-align: center;
       color: white;
       max-width: 500px;
-      transform: translateY(50px);
-      opacity: 0;
-      transition: all 0.8s ease;
-    }
-
-    .card.visible {
       transform: translateY(0);
       opacity: 1;
+      transition: all 0.8s ease;
     }
 
     h1 {
@@ -140,7 +135,7 @@
   <script>
     function goToPage(message) {
       document.getElementById('main-content').style.display = 'none';
-      document.getElementById('detail-page').style.display = 'block';
+      document.getElementById('detail-page').style.display = 'flex';
       document.getElementById('detail-message').value = message;
     }
 
