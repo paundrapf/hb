@@ -3,33 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unique Birthday Slides</title>
+    <title>Aesthetic Birthday Slides</title>
     <style>
         body {
             margin: 0;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: #f0f8ff;
+            background: linear-gradient(135deg, #f8b195, #f67280);
             overflow: hidden;
         }
 
         .slide {
-            display: none;
             position: absolute;
             width: 100%;
             height: 100%;
+            display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            animation: fadeIn 1s ease forwards;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 1s ease;
         }
 
         .slide.active {
-            display: flex;
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .slide1 {
@@ -44,7 +47,7 @@
             background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
             color: #333;
             font-size: 2.5rem;
-            transform: rotate(-5deg);
+            animation: slideInLeft 1s ease;
         }
 
         .slide3 {
@@ -52,15 +55,14 @@
             color: #222;
             font-size: 2rem;
             font-style: italic;
-            display: grid;
-            place-items: center;
+            animation: fadeZoom 1s ease;
         }
 
         .slide4 {
             background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
             color: #444;
             font-size: 2.5rem;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            animation: slideInRight 1s ease;
         }
 
         .slide5 {
@@ -107,6 +109,38 @@
             }
         }
 
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeZoom {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
     </style>
 </head>
 <body>
