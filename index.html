@@ -103,6 +103,22 @@
       margin-bottom: 20px;
     }
 
+    .detail-box .submit-btn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      background: #A4508B;
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    .detail-box .submit-btn:hover {
+      background: #6A0572;
+    }
+
     .back-btn {
       padding: 10px 20px;
       border: none;
@@ -127,65 +143,10 @@
 <body>
 
   <div id="main-content">
-    <!-- Main Content Cards -->
     <div class="card">
       <h1>Happy Birthday!</h1>
       <p>Today is a special day, and it's all about celebrating you. We hope this year brings you countless blessings and unforgettable memories.</p>
       <button class="btn" onclick="goToPage('Wishing you success and happiness in all aspects of life. Stay amazing!')">Read More</button>
-    </div>
-
-    <div class="card">
-      <h1>Message #2</h1>
-      <p>May your dreams take flight and your heart be filled with peace, joy, and endless laughter.</p>
-      <button class="btn" onclick="goToPage('Dream big, work hard, and let your heart guide you to amazing places!')">Read More</button>
-    </div>
-
-    <div class="card">
-      <h1>Message #3</h1>
-      <p>Remember, you are cherished, loved, and appreciated more than words can say.</p>
-      <button class="btn" onclick="goToPage('Your kindness and warmth light up everyone’s day. Keep being wonderful!')">Read More</button>
-    </div>
-
-    <div class="card">
-      <h1>Message #4</h1>
-      <p>Your kindness and strength inspire everyone around you.</p>
-      <button class="btn" onclick="goToPage('The strength you show every day is inspiring. Wishing you continued courage and joy!')">Read More</button>
-    </div>
-
-    <div class="card">
-      <h1>Message #5</h1>
-      <p>May your heart be filled with joy and your days be full of success.</p>
-      <button class="btn" onclick="goToPage('Wishing you a year filled with success, laughter, and everything you wish for.')">Read More</button>
-    </div>
-
-    <div class="card">
-      <h1>Message #6</h1>
-      <p>You deserve all the happiness in the world on your special day.</p>
-      <button class="btn" onclick="goToPage('On this special day, we celebrate you and all the joy you bring.')">Read More</button>
-    </div>
-
-    <div class="card">
-      <h1>Message #7</h1>
-      <p>May this year bring you endless opportunities and memorable moments.</p>
-      <button class="btn" onclick="goToPage('With each passing year, may your happiness multiply and your dreams come true.')">Read More</button>
-    </div>
-
-    <div class="card">
-      <h1>Message #8</h1>
-      <p>Wishing you a day as wonderful as you are and a year full of blessings.</p>
-      <button class="btn" onclick="goToPage('You are loved and appreciated beyond measure. Stay incredible!')">Read More</button>
-    </div>
-
-    <div class="card">
-      <h1>Message #9</h1>
-      <p>May your birthday be the start of a new chapter full of happiness.</p>
-      <button class="btn" onclick="goToPage('Let this new year bring you more love, joy, and unforgettable memories!')">Read More</button>
-    </div>
-
-    <div class="card">
-      <h1>Message #10</h1>
-      <p>Cheers to another year of being fabulous!</p>
-      <button class="btn" onclick="goToPage('You shine brighter with each passing year. Keep being your amazing self!')">Read More</button>
     </div>
   </div>
 
@@ -194,24 +155,12 @@
       <h1>Detail Message</h1>
       <textarea id="detail-message"></textarea>
       <img src="https://via.placeholder.com/300" alt="Placeholder Image">
+      <button class="submit-btn" onclick="submitMessage()">Submit</button>
       <button class="back-btn" onclick="goBack()">Back</button>
     </div>
   </div>
 
   <script>
-    const cards = document.querySelectorAll('.card');
-
-    // Scroll animation
-    window.addEventListener('scroll', () => {
-      cards.forEach(card => {
-        const cardTop = card.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        if (cardTop < windowHeight - 50) {
-          card.classList.add('visible');
-        }
-      });
-    });
-
     function goToPage(message) {
       document.getElementById('main-content').style.display = 'none';
       const detailPage = document.getElementById('detail-page');
@@ -222,6 +171,14 @@
     function goBack() {
       document.getElementById('main-content').style.display = 'block';
       document.getElementById('detail-page').style.display = 'none';
+    }
+
+    function submitMessage() {
+      const message = document.getElementById('detail-message').value;
+      alert(`Message Submitted: ${message}`);
+      // Simulate sending to admin (this would normally involve an API call)
+      console.log(`Message sent to admin: ${message}`);
+      goBack();
     }
   </script>
 
