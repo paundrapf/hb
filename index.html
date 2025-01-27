@@ -33,29 +33,53 @@
       width: 100%;
       height: 100%;
       position: absolute;
+      opacity: 0;
+      transform: scale(0.9);
       transition: opacity 1s ease, transform 1s ease;
     }
 
     .page.active {
       display: flex;
       opacity: 1;
-      transform: translateY(0);
+      transform: scale(1);
     }
 
     .page.hidden {
       opacity: 0;
-      transform: translateY(20px);
+      transform: scale(0.9);
     }
 
     .page h1 {
       font-size: 3rem;
       color: #333;
       margin: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #333;
+      width: 0;
+      animation: typing 2s steps(30, end), blink 0.5s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      from { border-color: transparent; }
+      to { border-color: #333; }
     }
 
     .page p {
       font-size: 1.5rem;
       color: #555;
+      opacity: 0;
+      animation: fadeIn 1.5s ease forwards 2s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     button {
@@ -102,20 +126,63 @@
       <h1>A Special Day</h1>
       <p>Celebrate the amazing person you are.</p>
       <button onclick="nextPage(3)">Next</button>
+      <button onclick="prevPage(1)">Back</button>
     </div>
 
     <div id="page-3" class="page hidden">
       <h1>So Many Memories</h1>
       <p>Each one brighter than the last.</p>
       <button onclick="nextPage(4)">Next</button>
+      <button onclick="prevPage(2)">Back</button>
     </div>
 
-    <!-- Add up to 10 pages -->
+    <div id="page-4" class="page hidden">
+      <h1>Grateful Moments</h1>
+      <p>Filled with laughter and love.</p>
+      <button onclick="nextPage(5)">Next</button>
+      <button onclick="prevPage(3)">Back</button>
+    </div>
+
+    <div id="page-5" class="page hidden">
+      <h1>Dream Big</h1>
+      <p>The best is yet to come.</p>
+      <button onclick="nextPage(6)">Next</button>
+      <button onclick="prevPage(4)">Back</button>
+    </div>
+
+    <div id="page-6" class="page hidden">
+      <h1>Cheers to Friendship</h1>
+      <p>We are so lucky to have you.</p>
+      <button onclick="nextPage(7)">Next</button>
+      <button onclick="prevPage(5)">Back</button>
+    </div>
+
+    <div id="page-7" class="page hidden">
+      <h1>Happiness Overflow</h1>
+      <p>May your heart always be full.</p>
+      <button onclick="nextPage(8)">Next</button>
+      <button onclick="prevPage(6)">Back</button>
+    </div>
+
+    <div id="page-8" class="page hidden">
+      <h1>Shine Bright</h1>
+      <p>You light up every room you enter.</p>
+      <button onclick="nextPage(9)">Next</button>
+      <button onclick="prevPage(7)">Back</button>
+    </div>
+
+    <div id="page-9" class="page hidden">
+      <h1>Stay Amazing</h1>
+      <p>Never stop being you.</p>
+      <button onclick="nextPage(10)">Next</button>
+      <button onclick="prevPage(8)">Back</button>
+    </div>
 
     <div id="page-10" class="page hidden">
       <h1>Cheers to You!</h1>
       <p>Here's to another fantastic year ahead!</p>
       <button onclick="restart()">Restart</button>
+      <button onclick="prevPage(9)">Back</button>
     </div>
   </div>
 
@@ -123,12 +190,25 @@
     let currentPage = 1;
 
     function nextPage(page) {
-      document.getElementById(`page-${currentPage}`).classList.remove('active');
-      document.getElementById(`page-${currentPage}`).classList.add('hidden');
-
+      const current = document.getElementById(`page-${currentPage}`);
       const next = document.getElementById(`page-${page}`);
+
+      current.classList.remove('active');
+      current.classList.add('hidden');
       next.classList.add('active');
       next.classList.remove('hidden');
+
+      currentPage = page;
+    }
+
+    function prevPage(page) {
+      const current = document.getElementById(`page-${currentPage}`);
+      const prev = document.getElementById(`page-${page}`);
+
+      current.classList.remove('active');
+      current.classList.add('hidden');
+      prev.classList.add('active');
+      prev.classList.remove('hidden');
 
       currentPage = page;
     }
