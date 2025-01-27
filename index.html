@@ -114,32 +114,39 @@
 </head>
 <body>
 
-  <div class="card">
-    <h1>Happy Birthday!</h1>
-    <p>Today is a special day, and it's all about celebrating you. We hope this year brings you countless blessings and unforgettable memories.</p>
-    <button class="btn" onclick="goToPage('Wishing you success and happiness in all aspects of life. Stay amazing!')">Read More</button>
+  <div id="main-content">
+    <div class="card">
+      <h1>Happy Birthday!</h1>
+      <p>Today is a special day, and it's all about celebrating you. We hope this year brings you countless blessings and unforgettable memories.</p>
+      <button class="btn" onclick="goToPage('Wishing you success and happiness in all aspects of life. Stay amazing!')">Read More</button>
+    </div>
+
+    <div class="card">
+      <h1>Message #2</h1>
+      <p>May your dreams take flight and your heart be filled with peace, joy, and endless laughter.</p>
+      <button class="btn" onclick="goToPage('Dream big, work hard, and let your heart guide you to amazing places!')">Read More</button>
+    </div>
   </div>
 
-  <div class="card">
-    <h1>Message #2</h1>
-    <p>May your dreams take flight and your heart be filled with peace, joy, and endless laughter.</p>
-    <button class="btn" onclick="goToPage('Dream big, work hard, and let your heart guide you to amazing places!')">Read More</button>
+  <div id="detail-page" style="display:none;">
+    <div class="text-box">
+      <h1>Detail Message</h1>
+      <textarea id="detail-message"></textarea>
+      <img src="https://via.placeholder.com/400" alt="Placeholder Image">
+      <button class="back-btn" onclick="goBack()">Back</button>
+    </div>
   </div>
 
   <script>
     function goToPage(message) {
-      document.body.innerHTML = `
-        <div class="text-box">
-          <h1>Detail Message</h1>
-          <textarea>${message}</textarea>
-          <img src="https://via.placeholder.com/400" alt="Placeholder Image">
-          <button class="back-btn" onclick="goBack()">Back</button>
-        </div>
-      `;
+      document.getElementById('main-content').style.display = 'none';
+      document.getElementById('detail-page').style.display = 'block';
+      document.getElementById('detail-message').value = message;
     }
 
     function goBack() {
-      location.reload();
+      document.getElementById('main-content').style.display = 'block';
+      document.getElementById('detail-page').style.display = 'none';
     }
   </script>
 
