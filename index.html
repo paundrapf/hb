@@ -66,23 +66,109 @@
     .btn:hover {
       background: #6A0572;
     }
+
+    .detail-box {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      text-align: center;
+      color: #333;
+      width: 300px;
+      opacity: 0;
+      transition: all 0.4s ease;
+      z-index: 100;
+    }
+
+    .detail-box.visible {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .detail-box .close-btn {
+      background: #A4508B;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .detail-box .close-btn:hover {
+      background: #6A0572;
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1 id="message">Happy Birthday!</h1>
-    <p>Today is a special day, and it's all about celebrating you. You bring joy, love, and happiness to everyone around you. We hope this year brings you countless blessings and unforgettable memories.</p>
-    <button class="btn" onclick="revealMoreMessages()">Click to See More</button>
+
+  <div id="detailBox" class="detail-box">
+    <p id="detailContent"></p>
+    <button class="close-btn" onclick="closeDetailBox()">Close</button>
   </div>
-  
+
+  <div class="card">
+    <h1>Happy Birthday!</h1>
+    <p>Today is a special day, and it's all about celebrating you. We hope this year brings you countless blessings and unforgettable memories.</p>
+    <button class="btn" onclick="showDetail('Wishing you success and happiness in all aspects of life. Stay amazing!')">Read More</button>
+  </div>
+
   <div class="card">
     <h1>Message #2</h1>
-    <p>May your dreams take flight and your heart be filled with peace, joy, and endless laughter. Here’s to another year of amazing adventures!</p>
+    <p>May your dreams take flight and your heart be filled with peace, joy, and endless laughter.</p>
+    <button class="btn" onclick="showDetail('Dream big, work hard, and let your heart guide you to amazing places!')">Read More</button>
   </div>
 
   <div class="card">
     <h1>Message #3</h1>
-    <p>Remember, you are cherished, loved, and appreciated more than words can say. Wishing you all the best on your special day and beyond.</p>
+    <p>Remember, you are cherished, loved, and appreciated more than words can say.</p>
+    <button class="btn" onclick="showDetail('Your kindness and warmth light up everyone’s day. Keep being wonderful!')">Read More</button>
+  </div>
+
+  <div class="card">
+    <h1>Message #4</h1>
+    <p>Your kindness and strength inspire everyone around you.</p>
+    <button class="btn" onclick="showDetail('The strength you show every day is inspiring. Wishing you continued courage and joy!')">Read More</button>
+  </div>
+
+  <div class="card">
+    <h1>Message #5</h1>
+    <p>May your heart be filled with joy and your days be full of success.</p>
+    <button class="btn" onclick="showDetail('Wishing you a year filled with success, laughter, and everything you wish for.')">Read More</button>
+  </div>
+
+  <div class="card">
+    <h1>Message #6</h1>
+    <p>You deserve all the happiness in the world on your special day.</p>
+    <button class="btn" onclick="showDetail('On this special day, we celebrate you and all the joy you bring.')">Read More</button>
+  </div>
+
+  <div class="card">
+    <h1>Message #7</h1>
+    <p>May this year bring you endless opportunities and memorable moments.</p>
+    <button class="btn" onclick="showDetail('With each passing year, may your happiness multiply and your dreams come true.')">Read More</button>
+  </div>
+
+  <div class="card">
+    <h1>Message #8</h1>
+    <p>Wishing you a day as wonderful as you are and a year full of blessings.</p>
+    <button class="btn" onclick="showDetail('You are loved and appreciated beyond measure. Stay incredible!')">Read More</button>
+  </div>
+
+  <div class="card">
+    <h1>Message #9</h1>
+    <p>May your birthday be the start of a new chapter full of happiness.</p>
+    <button class="btn" onclick="showDetail('Let this new year bring you more love, joy, and unforgettable memories!')">Read More</button>
+  </div>
+
+  <div class="card">
+    <h1>Message #10</h1>
+    <p>Cheers to another year of being fabulous!</p>
+    <button class="btn" onclick="showDetail('You shine brighter with each passing year. Keep being your amazing self!')">Read More</button>
   </div>
 
   <script>
@@ -99,17 +185,18 @@
       });
     });
 
-    // Button functionality
-    function revealMoreMessages() {
-      const newCard = document.createElement('div');
-      newCard.classList.add('card');
-      newCard.innerHTML = `
-        <h1>Message #4</h1>
-        <p>Your kindness and strength inspire everyone around you. Here's to a year full of love, laughter, and boundless opportunities!</p>
-      `;
-      document.body.appendChild(newCard);
-      setTimeout(() => newCard.classList.add('visible'), 100);
+    function showDetail(message) {
+      const detailBox = document.getElementById('detailBox');
+      const detailContent = document.getElementById('detailContent');
+      detailContent.textContent = message;
+      detailBox.classList.add('visible');
+    }
+
+    function closeDetailBox() {
+      const detailBox = document.getElementById('detailBox');
+      detailBox.classList.remove('visible');
     }
   </script>
+
 </body>
 </html>
